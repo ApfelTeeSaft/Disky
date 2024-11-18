@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@atproto/api": "^0.13.16",
+    "appwrite": "^16.0.2",
     "canvas": "^2.11.2",
     "cron": "^3.2.1",
     "discord.js": "^14.16.3",
