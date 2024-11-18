@@ -1,13 +1,21 @@
 import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import { BskyAgent } from '@atproto/api';
+import { getBlueskyAgent } from '../helpers/bluesky';
 
 export async function handleAnalyticsCommand(
     interaction: ChatInputCommandInteraction,
-    handle: string,
-    agent: BskyAgent
+    handle: string
 ) {
     const startTime = Date.now();
-    await interaction.deferReply();
+    await interaction.deferReply({ ephemeral: true });
+
+    const agent = await getBlueskyAgent(interaction.user.id);
+
+    if (!agent) {
+        await interaction.editReply({
+            content: 'You need to log in using `/login` before using this command.',
+        });
+        return;
+    }
 
     try {
         const profile = await agent.getProfile({ actor: handle });
@@ -29,7 +37,7 @@ export async function handleAnalyticsCommand(
 
         await interaction.editReply({ embeds: [embed] });
     } catch (error) {
-        await interaction.editReply('Failed to fetch analytics. Please check the handle and try again.');
         console.error('Error fetching analytics:', error);
+        await interaction.editReply('Failed to fetch analytics. Please check the handle and try again.');
     }
 }
