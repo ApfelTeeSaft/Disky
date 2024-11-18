@@ -13,4 +13,4 @@
 
 ### - every discord user logs in with their own bluesky account to bypass the rate limit
 ### - cross server compatibility
-### - appwrite DB for storing sensitive data such as bearer tokens of bluesky accounts, Thanks to (Ray)[[https://github.com/](https://github.com/reiyua)] for showing me this Service!
+### - appwrite DB for storing sensitive data such as bearer tokens of bluesky accounts, Thanks to [Ray](https://github.com/reiyua) for showing me this Service!
